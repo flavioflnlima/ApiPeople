@@ -16,6 +16,7 @@ namespace WebApiPeople.Controllers
     public class PeopleController : ControllerBase
     {
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<PeopleViewModel>>> Get([FromServices] DataContext context)
         {
             var people = await context.People.ToListAsync();
@@ -58,6 +59,7 @@ namespace WebApiPeople.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<ActionResult<PeopleViewModel>> Put([FromServices] DataContext context, [FromRoute] int id, [FromBody] PeopleViewModel people)
         {
             if (!ModelState.IsValid)
@@ -92,6 +94,7 @@ namespace WebApiPeople.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize]
         public async Task<ActionResult<PeopleViewModel>> Delete([FromServices] DataContext context, [FromRoute] int id)
         {
             if (!ModelState.IsValid)

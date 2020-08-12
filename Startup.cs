@@ -57,6 +57,8 @@ namespace WebApiPeople
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseCors(x => x
