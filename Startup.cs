@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WebApiPeople.Data;
+using WebApiPeople.Services;
 
 namespace WebApiPeople
 {
@@ -42,8 +43,10 @@ namespace WebApiPeople
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Settings.ValidOn,
+                    ValidIssuer = Settings.Issuer
                 };
             });
         }

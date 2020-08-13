@@ -20,7 +20,9 @@ namespace WebApiPeople.Services
                 {
                     new Claim(ClaimTypes.Email, user.Email)
                 }),
-                Expires = DateTime.UtcNow.AddHours(2),
+                Issuer = Settings.Issuer,
+                Audience = Settings.ValidOn,
+                Expires = DateTime.UtcNow.AddHours(Settings.ExpirationHours),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
