@@ -60,7 +60,6 @@ namespace WebApiPeople
 
             app.UseHttpsRedirection();
 
-            app.UseAuthentication();
 
             app.UseRouting();
 
@@ -70,6 +69,7 @@ namespace WebApiPeople
                 .AllowAnyMethod()
             );
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -10,7 +10,8 @@ namespace WebApiPeople.Repositories
         public static UserViewModel Get(string email, string password)
         {
             var users = new List<UserViewModel>();
-            users.Add(new UserViewModel { Id = 1, Email = "flavio@flavio.com", Password = "123456"});
+            users.Add(new UserViewModel { Id = 1, Email = "flavio@flavio.com", Password = "123456", Role = "manager" });
+            users.Add(new UserViewModel { Id = 1, Email = "flavio@flavio", Password = "123456", Role = "normal" });
 
             return users.Where(x => x.Email.ToLower() == email.ToLower() && x.Password == password).FirstOrDefault();
         }

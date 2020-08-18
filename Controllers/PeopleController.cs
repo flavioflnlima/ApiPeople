@@ -10,6 +10,7 @@ using WebApiPeople.Models;
 
 namespace WebApiPeople.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/pessoas")]
 
@@ -43,7 +44,7 @@ namespace WebApiPeople.Controllers
 
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "normal")]
         public async Task<ActionResult<PeopleViewModel>> Post([FromServices] DataContext context, [FromBody] PeopleViewModel people)
         {
 
@@ -59,7 +60,6 @@ namespace WebApiPeople.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<ActionResult<PeopleViewModel>> Put([FromServices] DataContext context, [FromRoute] int id, [FromBody] PeopleViewModel people)
         {
             if (!ModelState.IsValid)
@@ -94,7 +94,6 @@ namespace WebApiPeople.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        [Authorize]
         public async Task<ActionResult<PeopleViewModel>> Delete([FromServices] DataContext context, [FromRoute] int id)
         {
             if (!ModelState.IsValid)
